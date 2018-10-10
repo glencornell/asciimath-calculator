@@ -1,0 +1,10 @@
+.deps/
+.dirstamp
+Makefile
+am
+am.c
+am.h
+*.o
+asciimath.c
+config.h
+stamp-h1
