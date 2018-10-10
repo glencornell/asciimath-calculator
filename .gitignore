@@ -1,3 +1,5 @@
+*~
+
 # http://www.gnu.org/software/automake
 
 Makefile.in
@@ -23,6 +25,7 @@ Makefile.in
 /install-sh
 /missing
 /stamp-h1
+/Makefile.am
 
 # https://www.gnu.org/software/libtool/
 
