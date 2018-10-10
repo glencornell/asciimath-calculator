@@ -237,6 +237,9 @@ eval(struct ast *a)
   case '-': v = eval(a->l) - eval(a->r); break;
   case '*': v = eval(a->l) * eval(a->r); break;
   case '/': v = eval(a->l) / eval(a->r); break;
+  case 'A': v = eval(a->l) && eval(a->r); break;
+  case 'O': v = eval(a->l) || eval(a->r); break;
+  case '~': v = !eval(a->l); break;
   case '|': v = fabs(eval(a->l)); break;
   case 'M': v = -eval(a->l); break;
 
@@ -428,11 +431,14 @@ treefree(struct ast *a)
   case '-':
   case '*':
   case '/':
+  case 'O':
+  case 'A':
   case '1':  case '2':  case '3':  case '4':  case '5':  case '6':
   case 'L':
     treefree(a->r);
 
     /* one subtree */
+  case '~':
   case '|':
   case 'M': case 'C': case 'F':
     treefree(a->l);
@@ -505,6 +511,7 @@ dumpast(struct ast *a, int level)
 
     /* expressions */
   case '+': case '-': case '*': case '/': case 'L':
+  case 'O': case 'A':
   case '1': case '2': case '3':
   case '4': case '5': case '6': 
     printf("binop %c\n", a->nodetype);
@@ -512,7 +519,7 @@ dumpast(struct ast *a, int level)
     dumpast(a->r, level);
     return;
 
-  case '|': case 'M': 
+  case '~': case '|': case 'M': 
     printf("unop %c\n", a->nodetype);
     dumpast(a->l, level);
     return;

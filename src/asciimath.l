@@ -36,6 +36,11 @@ EXP	([Ee][-+]?[0-9]+)
 ">="    { yylval.fn = 5; return CMP; }
 "<="    { yylval.fn = 6; return CMP; }
 
+ /* logical ops */
+"and"   { return AND; }
+"or"    { return OR; }
+"not"   { return NOT; }
+
  /* keywords */
 
 "if"    { return IF; }

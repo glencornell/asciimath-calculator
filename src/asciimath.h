@@ -33,7 +33,8 @@ void symlistfree(struct symlist *sl);
 
 /* node types
  *  + - * / |
- *  0-7 comparison ops, bit coded 04 equal, 02 less, 01 greater
+ *  0-7 comparison ops
+ *  O A ~ logical ops
  *  M unary minus
  *  L statement list
  *  I IF statement

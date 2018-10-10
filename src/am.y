@@ -36,7 +36,8 @@
 %right '='
 %left '+' '-'
 %left '*' '/'
-%nonassoc '|' UMINUS
+%left OR AND
+%nonassoc '|' UMINUS NOT
 
 %type <a> exp stmt list explist
 %type <sl> symlist
@@ -64,6 +65,9 @@ exp: exp CMP exp          { $$ = newcmp($2, $1, $3); }
    | exp '-' exp          { $$ = newast('-', $1,$3);}
    | exp '*' exp          { $$ = newast('*', $1,$3); }
    | exp '/' exp          { $$ = newast('/', $1,$3); }
+   | exp AND exp          { $$ = newast('A', $1,$3); }
+   | exp OR exp           { $$ = newast('O', $1,$3); }
+   | NOT exp              { $$ = newast('~', $2, NULL); }
    | '|' exp              { $$ = newast('|', $2, NULL); }
    | '(' exp ')'          { $$ = $2; }
    | '-' exp %prec UMINUS { $$ = newast('M', $2, NULL); }
