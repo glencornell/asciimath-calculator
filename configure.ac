@@ -24,6 +24,5 @@ AC_CHECK_HEADERS([stdlib.h string.h])
 AC_FUNC_MALLOC
 AC_CHECK_FUNCS([floor sqrt strdup])
 
-AC_CONFIG_FILES([Makefile
-		 src/Makefile])
+AC_CONFIG_FILES([Makefile])
 AC_OUTPUT
